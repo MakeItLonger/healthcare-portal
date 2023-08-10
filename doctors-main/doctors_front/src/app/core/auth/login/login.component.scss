@@ -1,0 +1,27 @@
+mat-form-field {
+    width: 100%;
+  }
+
+  mat-spinner {
+    margin: auto;
+  }
+
+.wrapper{
+  width: 500px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 100px auto;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonHolder{
+  display: flex;
+  gap: 20px;
+}

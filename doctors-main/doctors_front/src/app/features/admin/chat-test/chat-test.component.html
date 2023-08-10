@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <mat-list role="list">
+      <mat-list-item
+        *ngFor='let chat of conversations'
+        role="listitem"
+        style="cursor: pointer"
+        routerLink="{{chat.chatId}}"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >{{chat.mate}}</mat-list-item
+      >
+    </mat-list>
+  <div class="routes">
+    <router-outlet ></router-outlet>
+  </div>
+</div>

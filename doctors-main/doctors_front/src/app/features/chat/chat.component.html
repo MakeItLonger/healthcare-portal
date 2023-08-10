@@ -1,0 +1,36 @@
+<div class="wrapper">
+
+  <div class="chatHeader">
+
+    <div class="actionButtons">
+      <button *ngIf="role === 'doctor'" class="actionButton" (click)="toggleAppointment()">Appointment</button>
+    </div>
+
+    <div class="chatInfo">
+      <h1>{{mate?.name}}</h1>
+      <img [src]="mate?.avatarUrl" alt="Not Found" onerror="this.src='../assets/default-avatar.jpg';">
+    </div>
+
+  </div>
+
+  <div *ngIf="appointmentOpen" class="appointment">
+    <button *ngFor="let date of availableDates">
+      <p>{{date.date}}</p>
+      <p>{{date.time}}</p>
+    </button>
+  </div>
+
+    <div class="messages">
+      <div class="background"></div>
+      <div *ngFor="let message of messages "
+           class="message" [ngClass] = "{'myMsg': message.sender === userId, 'receiver': message.sender !== userId }">
+        {{message.msg}}
+      </div>
+    </div>
+
+    <div class="inputs">
+      <textarea matInput class="text" #text></textarea>
+      <button class="submit" (click)="sendText(text)">Send</button>
+    </div>
+</div>
+

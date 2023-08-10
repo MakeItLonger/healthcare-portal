@@ -1,0 +1,72 @@
+<div mat-dialog-title>
+  <h1>News Form</h1>
+</div>
+
+<form [formGroup]="newsForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. John"
+          formControlName="title"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose a picture</mat-label>
+        <button
+          mat-icon-button
+          matPrefix
+          (click)="f_input.click()"
+          type="button"
+        >
+          <mat-icon>attach_file</mat-icon>
+        </button>
+        <input type="text" readonly matInput formControlName="display" />
+        <input
+          type="file"
+          hidden
+          #f_input
+          (change)="handleFileInputChange($event)"
+          formControlName="picture"
+        />
+        <mat-error>this field is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Content</mat-label>
+        <textarea
+          matInput
+          placeholder="Your article..."
+          formControlName="content"
+          matTextareaAutosize
+          rows="8"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button
+      mat-raised-button
+      (click)="onCancelForm()"
+      type="button"
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!newsForm.valid"
+    >
+      {{ data ? "Update" : "Save" }}
+    </button>
+  </div>
+</form>

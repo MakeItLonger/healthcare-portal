@@ -1,0 +1,71 @@
+.wrapper{
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 60px;
+}
+
+img{
+  width: 120px;
+  height: 120px;
+}
+
+.personalData{
+  margin: auto;
+  width: 600px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.personalData > h1{
+  align-self: center;
+}
+
+.personalData > button{
+  align-self: end;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+textarea{
+  resize: none;
+}
+
+.delete{
+  width: 200px;
+  padding: 10px;
+}
+
+
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #3f51b5;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #7a7afc;
+}
+
+input[type=file]:disabled::file-selector-button {
+  background: #e0e0e0;
+}
+.avatarSelect{
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}

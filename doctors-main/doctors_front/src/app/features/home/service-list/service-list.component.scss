@@ -1,0 +1,46 @@
+.row{
+  width: 80vw;
+  padding: 20px;
+  margin: 60px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 84px;
+  overflow: scroll;
+}
+
+.serviceWrapper{
+  width: 400px;
+  height: fit-content;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.serviceWrapper > img{
+  width: 400px;
+  height: 250px;
+  z-index: -1;
+  object-fit: cover;
+  object-position: 55%;
+  border-radius: 0;
+  transition: all 0.5s;
+}
+.serviceWrapper:hover>img{
+  transition: all 0.5s;
+  object-position: 45%;
+}
+
+.serviceWrapper > h1{
+  background-color: #3f51b5;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  padding: 8px;
+  width: 100%;
+}

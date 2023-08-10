@@ -1,0 +1,6 @@
+<div class="row">
+  <app-doctor
+    [doctor]="doctor"
+    *ngFor="let doctor of doctors$ | async"
+  ></app-doctor>
+</div>

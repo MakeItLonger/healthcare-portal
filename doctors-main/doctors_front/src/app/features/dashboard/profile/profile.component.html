@@ -1,0 +1,71 @@
+<div class="wrapper">
+
+  <mat-card class="personalData">
+
+    <button
+      (click)="togglePersonalData()"
+      mat-icon-button color="primary"
+      style="position: absolute; top: 14px; right: 20px">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <h1>Personal data</h1>
+
+   <form (submit)="onSave(dataForm)" #dataForm="ngForm">
+
+     <div class="avatarSelect">
+       <input class="avatarInput" (change)="onFileChange($event)" type="file" [disabled]="personalDataDisabled">
+       <img [src]="selectedAvatar || user.avatar.url" alt="Not Found" onerror="this.src='../assets/default-avatar.jpg';">
+     </div>
+
+     <mat-form-field>
+      <input name="name" [(ngModel)]="user.name" type="text" matInput placeholder="Name Surname" [disabled]="personalDataDisabled">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="user.email" [disabled]="personalDataDisabled">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="doctor">
+      <input type="text" matInput placeholder="Position" name="position" [(ngModel)]="user.position" [disabled]="personalDataDisabled">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="doctor">
+      <textarea style="height: 150px" matInput placeholder="Description" name="description" [(ngModel)]="user.description" [disabled]="personalDataDisabled"></textarea>
+    </mat-form-field>
+
+     <button type="submit" mat-raised-button color="primary" style="width: 50%; margin: 0 25%" [disabled]="personalDataDisabled">Save</button>
+
+   </form>
+  </mat-card>
+
+  <mat-card class="personalData">
+
+    <button
+      (click)="togglePassword()"
+      mat-icon-button color="primary"
+      style="position: absolute; top: 14px; right: 20px">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <h1>Password</h1>
+
+    <form (submit)="onPasswordChange(passwordForm)" #passwordForm="ngForm">
+
+      <mat-form-field>
+        <input type="text" name="password" ngModel #pass matInput placeholder="Password" [disabled]="passwordDisabled">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" #passRep matInput placeholder="Repeat password" [disabled]="passwordDisabled">
+      </mat-form-field>
+
+      <h1 *ngIf='pass.value !== passRep.value'>Passwords must match</h1>
+
+      <button mat-raised-button color="primary" style="width: 50%; margin: 0 25%" [disabled]="passwordDisabled && pass.value !== passRep.value">Save</button>
+
+    </form>
+  </mat-card>
+
+  <button (click)="openConfirmationDialog()" class="delete" mat-raised-button color="warn" style="margin: auto">Delete account</button>
+</div>

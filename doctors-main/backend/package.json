@@ -1,0 +1,41 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node ./server.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "bcrypt": "^5.1.0",
+    "cloudinary": "^1.36.4",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "gravatar": "^1.8.2",
+    "joi": "^17.7.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.4",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nanoid": "3.3.4",
+    "pdfkit": "^0.13.0",
+    "pdfkit-table": "^0.1.86",
+    "socket.io": "^4.7.0",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "@types/pdfkit": "^0.12.10",
+    "eslint": "^8.44.0",
+    "nodemon": "^2.0.22"
+  }
+}

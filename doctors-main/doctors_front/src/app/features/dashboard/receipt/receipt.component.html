@@ -1,0 +1,54 @@
+<mat-card class="wrapper">
+
+  <div style="display:flex; justify-content: space-between; align-items: center">
+    <h1 style="margin: 0">Receipt</h1>
+    <button (click)="dialogRef.close()" mat-icon-button><mat-icon>close</mat-icon></button>
+  </div>
+
+  <form (ngSubmit)="onAdd(drugForm)" #drugForm='ngForm' class="addTable">
+  <table cellspacing="0"><tr>
+    <td><mat-form-field style="margin-bottom: -1.25em" class="example-full-width">
+      <mat-label>Drug</mat-label>
+      <input name="name" ngModel matInput placeholder="Drug name">
+    </mat-form-field></td>
+    <td ><mat-form-field style="margin-bottom: -1.25em" class="example-full-width">
+      <mat-label>Dosage</mat-label>
+      <input name="dosage" ngModel matInput placeholder="number of mg/g/pills">
+    </mat-form-field></td>
+    <td><mat-form-field style="margin-bottom: -1.25em" class="example-full-width">
+      <mat-label>Intakes</mat-label>
+      <input name="intakes" ngModel matInput #intakes placeholder="* per day (details)" value="0">
+    </mat-form-field></td>
+  </tr></table>
+    <button type="submit" class="addButton" mat-mini-fab color="primary">
+      <mat-icon >add</mat-icon>
+    </button>
+  </form>
+
+  <table *ngIf="drugs.length>0" mat-table [dataSource]="drugs" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let drug"> {{drug.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dosage">
+      <th mat-header-cell *matHeaderCellDef> Dosage </th>
+      <td mat-cell *matCellDef="let drug"> {{drug.dosage}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="intakes">
+      <th mat-header-cell *matHeaderCellDef> Intakes </th>
+      <td mat-cell *matCellDef="let drug"> {{drug.intakes}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-form-field>
+    <textarea [(ngModel)]="description" style="height: 150px; resize: none" matInput placeholder="Details"></textarea>
+  </mat-form-field>
+
+  <button (click)="onSave()" mat-raised-button color="primary" style="width: 40%; margin: auto">Send</button>
+</mat-card>

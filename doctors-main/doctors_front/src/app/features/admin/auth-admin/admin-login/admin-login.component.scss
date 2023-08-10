@@ -1,0 +1,30 @@
+/* Center the form vertically */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Add some basic styling to the form */
+form {
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Style the form fields */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  width: 100%;
+}
+
+mat-error {
+  text-align: center;
+}

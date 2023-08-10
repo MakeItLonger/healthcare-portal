@@ -1,0 +1,83 @@
+<mat-toolbar color="primary">
+  <div class="nav-container">
+    <div class="panel-container">
+      <button
+        (click)="drawer.toggle()"
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="admin-panel-title">Admin Panel</span>
+    </div>
+    <button
+      (click)="openCreateForm()"
+      class="add-button"
+      mat-raised-button
+      *ngIf="routed"
+      style="
+        color: #3f51b5;
+        font-size: 16px;
+        position: absolute;
+        top: 85px;
+        right: 12vw;
+        width: 150px;
+      "
+    >
+      Add New Item
+    </button>
+    <button
+      class="button-logout"
+      mat-raised-button
+      color="accent"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer mode="side" opened>
+    <mat-list role="list">
+      <mat-list-item
+        role="listitem"
+        style="cursor: pointer"
+        routerLink="doctors"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Doctors</mat-list-item
+      >
+      <mat-list-item
+        role="listitem"
+        style="cursor: pointer"
+        routerLink="services"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Services</mat-list-item
+      >
+      <mat-list-item
+        role="listitem"
+        style="cursor: pointer"
+        routerLink="news"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >News</mat-list-item
+      >
+      <mat-list-item
+        role="listitem"
+        style="cursor: pointer"
+        routerLink="tokens"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Registrations</mat-list-item
+      >
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-card-content *ngIf="routed" style="height: calc(100vh - 64px)">
+      <router-outlet></router-outlet>
+    </mat-card-content>
+  </mat-drawer-content>
+</mat-drawer-container>

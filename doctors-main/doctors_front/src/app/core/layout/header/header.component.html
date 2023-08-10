@@ -1,0 +1,16 @@
+<header>
+  <div class="header-wrapper">
+    <a class="header-logo" href="/"><img height="70" src="assets/logo.svg" alt=""></a>
+    <nav>
+      <ul class="nav">
+        <li *ngFor="let item of navigation">
+          <a class="nav-link" [routerLink]="item.link">{{ item.label }}</a>
+        </li>
+      </ul>
+    </nav>
+    <div style="display: flex; gap: 10px">
+      <button mat-raised-button *ngIf="isAuth" routerLink="/dashboard">My Cabinet</button>
+      <button mat-raised-button (click)="login()">{{isAuth ? "Log out" : "Log in"}}</button>
+    </div>
+  </div>
+</header>

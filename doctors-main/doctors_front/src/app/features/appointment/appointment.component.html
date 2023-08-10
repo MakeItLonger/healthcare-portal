@@ -1,0 +1,146 @@
+<form [formGroup]="form">
+  <mat-stepper orientation="vertical" [linear]="stepperMode" #stepper>
+    <mat-step [stepControl]="form.controls['position']">
+      <ng-template matStepLabel
+        >Choose the field of medicine where you need consultation</ng-template
+      >
+      <mat-form-field>
+        <mat-label>Medical specialization</mat-label>
+        <mat-select formControlName="position">
+          <mat-option
+            *ngFor="let fieldOfMedicine of fieldsOfMedicine"
+            [value]="fieldOfMedicine.value"
+          >
+            {{ fieldOfMedicine.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button
+          mat-button
+          matStepperNext
+          [disabled]="form.controls['position'].invalid"
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="form.controls['doctor']">
+      <ng-template matStepLabel>Pick a doctor</ng-template>
+      <mat-form-field>
+        <mat-label>Specialists</mat-label>
+        <mat-select formControlName="doctor">
+          <mat-option *ngFor="let doctor of doctors$ | async" [value]="doctor">
+            {{ doctor.first_name }} {{ doctor.second_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious [disabled]="data.index !== 0">
+          Back
+        </button>
+        <button
+          mat-button
+          matStepperNext
+          [disabled]="form.controls['doctor'].invalid"
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="form.controls['date']">
+      <ng-template matStepLabel
+        >Сhoose a convenient date for an appointment within the next two
+        weeks</ng-template
+      >
+      <mat-form-field class="example-full-width">
+        <mat-label>Pick a date</mat-label>
+        <input
+          matInput
+          [matDatepickerFilter]="filterAvaliableDays"
+          [matDatepicker]="picker"
+          formControlName="date"
+          [min]="tomorrow"
+          [max]="twoWeeks"
+        />
+        <mat-hint
+          >Schedule of available dates for making an appointment with a
+          doctor</mat-hint
+        >
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious [disabled]="data.index !== 0">
+          Back
+        </button>
+        <button
+          mat-button
+          matStepperNext
+          [disabled]="form.controls['date'].invalid"
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="form.controls['time']">
+      <ng-template matStepLabel
+        >Schedule of available time for making an appointment with a
+        doctor</ng-template
+      >
+      <mat-chip-listbox aria-label="Pick a time" formControlName="time">
+        <ng-container *ngFor="let time of schedule$ | async">
+          <mat-chip-option>{{ time }}</mat-chip-option>
+        </ng-container>
+      </mat-chip-listbox>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button
+          mat-raised-button
+          color="primary"
+          matStepperNext
+          [disabled]="form.controls['time'].invalid"
+          (click)="confirmAppointment()"
+        >
+          Confirm an appointment
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel
+        >Details of your confirmed appointment</ng-template
+      >
+      <p *ngIf="currentDoctor as doctor">
+        <b>Doctor:</b> {{ doctor.first_name }}
+        {{ doctor.second_name }}
+      </p>
+      <p><b>Date of appointment:</b> {{ currentAppointment?.date | date }}</p>
+      <p><b>Time of appointment:</b> {{ currentAppointment?.time }}</p>
+      <div class="button-wrapper">
+        <button
+          type="button"
+          mat-raised-button
+          color="accent"
+          (click)="closeDialog()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="stepper.reset()"
+        >
+          Make a new appointment
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</form>

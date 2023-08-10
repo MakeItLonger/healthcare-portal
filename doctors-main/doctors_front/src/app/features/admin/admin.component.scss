@@ -1,0 +1,33 @@
+.nav-container {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  width: 100%;
+}
+
+.panel-container {
+  position: relative;
+}
+
+.mat-drawer {
+  width: 15vh;
+}
+
+.mat-drawer-content {
+  height: calc(100vh - 134px);
+  padding: 1rem;
+}
+
+.admin-panel-title {
+  position: relative;
+  bottom: 5px;
+}
+
+.active {
+  background-color: #f0f0f0;
+}
+
+.button-logout {
+  position: relative;
+  top: 7px;
+  width: 100px;
+}

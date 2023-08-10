@@ -1,0 +1,11 @@
+<div class="wrapper" (click)="toggleSize()">
+  <div class="date">
+    <h1 class="day">{{ getDate(article.createdAt) }}</h1>
+    <h1 class="month">
+      {{ getMonth(article.createdAt).slice(0, 3).toUpperCase() }}
+    </h1>
+  </div>
+  <img [ngClass]="{ openedImg: opened }" [src]="article.picture.url" />
+  <h1 class="title">{{ article.title }}</h1>
+  <p #id [@inOutAnimation] *ngIf="opened">{{ article.content }}</p>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <section class="hero">
+    <div class="hero-info">
+      <p class="title">MED CENTER HEALTH</p>
+      <h1>High Quality</h1>
+      <span class="descr">
+        To learn more about our clinical programs, browse our list of medical
+        services or make an appointment with a doctor.
+      </span>
+      <button (click)="bookAppointment()">Make an Appointment</button>
+    </div>
+  </section>
+  <section class="doctors-list">
+    <h2>Meet Our Specialists</h2>
+    <app-doctors-list></app-doctors-list>
+    <app-service-list></app-service-list>
+  </section>
+  <app-news-block></app-news-block>
+</div>
+
+<button mat-fab color="primary" style="position: fixed; right: 100px; bottom: 100px" (click)="chatOpen = !chatOpen">
+  <mat-icon>chat</mat-icon>
+</button>
+
+<app-chat-block *ngIf="chatOpen"></app-chat-block>
+
+
+<app-footer></app-footer>

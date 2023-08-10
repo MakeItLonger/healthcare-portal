@@ -1,0 +1,16 @@
+.appointmentsWrapper{
+  top:50px;
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  gap: 20px;
+  margin: auto;
+}
+
+.datepicker{
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
+
+

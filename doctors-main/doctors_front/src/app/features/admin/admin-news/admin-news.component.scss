@@ -1,0 +1,36 @@
+.container-flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.filter {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1248px;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+td {
+  text-align: center;
+}
+
+::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}
+
+mat-paginator {
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .no-matching {
+  display: flex;
+  justify-content: center;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}

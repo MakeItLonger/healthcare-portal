@@ -1,0 +1,17 @@
+<div class="card">
+  <img
+    [src]="doctor.avatar.url"
+    alt="doctor-card"
+    style="width: 300px; height: 350px"
+  />
+  <div class="container">
+    <h2>{{ doctor.first_name }} {{ doctor.second_name }}</h2>
+    <p class="title">{{ doctor.position }}</p>
+    <p class="descr">{{ doctor.description }}</p>
+    <p>
+      <button class="button" (click)="bookAppointment()">
+        Make an Appointment
+      </button>
+    </p>
+  </div>
+</div>

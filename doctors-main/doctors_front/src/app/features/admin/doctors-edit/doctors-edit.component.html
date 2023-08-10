@@ -1,0 +1,113 @@
+<div mat-dialog-title>
+  <h1>Doctor Form</h1>
+</div>
+
+<form [formGroup]="doctorForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. John"
+          formControlName="first_name"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. Doe"
+          formControlName="second_name"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Postion</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. Neurologist"
+          formControlName="position"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose an avatar</mat-label>
+        <button
+          mat-icon-button
+          matPrefix
+          (click)="f_input.click()"
+          type="button"
+        >
+          <mat-icon>attach_file</mat-icon>
+        </button>
+        <input type="text" readonly matInput formControlName="display" />
+        <input
+          type="file"
+          hidden
+          #f_input
+          (change)="handleFileInputChange($event)"
+          formControlName="avatar"
+        />
+        <mat-error>this field is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          placeholder="Ex. A competent ENT Surgeon practising for the past 5 years."
+          formControlName="description"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Choose working days for appointment</mat-label>
+        <mat-select formControlName="appointmentDays" multiple>
+          <mat-option
+            *ngFor="let day of workingDays; let i = index"
+            [value]="weekNumberList[i]"
+            >{{ day }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-chip-listbox
+        aria-label="Time selection"
+        formControlName="timeSchedule"
+        multiple
+      >
+        <ng-container *ngFor="let time of timeList">
+          <mat-chip-option>{{ time }}</mat-chip-option>
+        </ng-container>
+      </mat-chip-listbox>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button
+      mat-raised-button
+      (click)="onCancelForm()"
+      type="button"
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="doctorForm.invalid"
+    >
+      {{ data ? "Update" : "Save" }}
+    </button>
+  </div>
+</form>

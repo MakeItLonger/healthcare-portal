@@ -1,0 +1,53 @@
+<div class="wrapper">
+
+<mat-toolbar color="primary">
+  <div class="nav-container">
+    <div class="panel-container">
+      <button
+        (click)="drawer.toggle()"
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="admin-panel-title">Dashboard</span>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container class="container">
+  <mat-drawer #drawer mode="side" opened>
+    <mat-list role="list">
+      <mat-list-item
+        role="listitem"
+        style="cursor: pointer; font-size: 20px; font-weight: bold"
+        routerLink="chat"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      ><p class="point">Chat</p></mat-list-item>
+      <mat-list-item
+      role="listitem"
+      style="cursor: pointer; font-size: 20px; font-weight: bold"
+      routerLink="profile"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    ><p class="point">Profile</p></mat-list-item>
+      <mat-list-item
+        role="listitem"
+        style="cursor: pointer; font-size: 20px; font-weight: bold"
+        routerLink="appointments"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      ><p class="point">Appointments</p></mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <!-- <mat-card> -->
+    <mat-card-content *ngIf="routed">
+      <router-outlet></router-outlet>
+    </mat-card-content>
+    <!-- </mat-card> -->
+  </mat-drawer-content>
+</mat-drawer-container>
+</div>
